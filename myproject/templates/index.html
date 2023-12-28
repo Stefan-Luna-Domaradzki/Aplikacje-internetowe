@@ -1,0 +1,18 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<h1> Luna Aplikacje Internetowe </h1>
+
+{% for feature in features %}
+<br>ID: {{feature.id}}
+<br>Name: {{feature.name}}
+<br>Details: {{feature.details}}
+{% endfor %}
+<br><br>
+
+{% for feature in features %}
+  {% if feature.id == 1  %}
+    This should display name two times: {{ feature.name }}{{ feature.name }}
+  {% endif %}
+{% endfor %}

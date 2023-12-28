@@ -1,0 +1,84 @@
+<!-- templates/test_events3.html -->
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Tasks</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <h4 class="sidebar-header">User Panel</h4>
+                <div class="sidebar-buttons">
+                    <button class="btn btn-light" onclick="location.href='{% url 'add_event' %}'">Dodaj zadanie</button>
+                    <button class="btn btn-light" onclick="location.href='{% url 'account_settings' %}'">Ustawienia</button>
+                    <button class="btn btn-light" onclick="location.href='{% url 'logout' %}'">Wyloguj</button>                </div>
+            </div>
+        </nav>
+
+        <main class="col-md-10">
+            <div class="container">
+                <h1>User Tasks</h1>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="task-section">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="priority-block" id="low-priority">
+                                        <h2>Low Priority</h2>
+                                        {% for event in low_priority_events %}
+                                            <div class="task low">
+                                                <h3>{{ event.name }}</h3>
+                                                <p>{{ event.details }}</p>
+                                                <p>Deadline: {{ event.deadline }}</p>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="priority-block" id="medium-priority">
+                                        <h2>Medium Priority</h2>
+                                        {% for event in medium_priority_events %}
+                                            <div class="task medium">
+                                                <h3>{{ event.name }}</h3>
+                                                <p>{{ event.details }}</p>
+                                                <p>Deadline: {{ event.deadline }}</p>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="priority-block" id="high-priority">
+                                        <h2>High Priority</h2>
+                                        {% for event in high_priority_events %}
+                                            <div class="task high">
+                                                <h3>{{ event.name }}</h3>
+                                                <p>{{ event.details }}</p>
+                                                <p>Deadline: {{ event.deadline }}</p>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

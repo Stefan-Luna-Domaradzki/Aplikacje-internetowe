@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<style>
+    h3{
+    color: red;
+    }
+</style>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Login Now</h1>
+
+    {% for message in messages %}
+    <h3>{{message}}</h3>
+    {% endfor %}
+
+
+<form method="POST" action="login">
+    {% csrf_token %}
+    <p>Username:</p>
+    <input type="text" name="username">
+
+    <p>Password:</p>
+    <input type="password" name="password">
+
+    <input type="submit">
+</form>
+</body>
+</html>

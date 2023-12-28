@@ -1,0 +1,35 @@
+
+body {
+    height: 100vh;
+}
+
+.container {
+    height: 100%;
+}
+
+.logout-panel {
+    margin-top: 20px;
+}
+
+.task-column {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.low-priority {
+    background-color: #d4edda; /* Bootstrap success color (green) */
+}
+
+.medium-priority {
+    background-color: #fff3cd; /* Bootstrap warning color (yellow) */
+}
+
+.high-priority {
+    background-color: #f8d7da; /* Bootstrap danger color (red) */
+}
+
+.task-item {
+    margin-bottom: 10px;
+}

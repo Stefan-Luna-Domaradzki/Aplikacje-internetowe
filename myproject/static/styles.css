@@ -1,0 +1,70 @@
+/* static/styles.css */
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #313338;  /* Kolor tła */
+    color: #fff;  /* Kolor tekstu */
+}
+
+.container {
+    padding: 20px;
+}
+
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #2B2D31 !important;  /* Kolor paska bocznego z dodanym !important */
+}
+
+.sidebar-header {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.sidebar-buttons button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    text-align: left;
+    background-color: transparent;
+    color: #fff;
+    cursor: pointer;
+}
+
+.sidebar-buttons button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.task {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    color: #fff;  /* Kolor tekstu dla zadań */
+}
+
+.low,
+.medium,
+.high {
+    color: #fff;  /* Kolor tekstu dla priorytetów */
+}
+
+.low {
+    background-color: #009900;  /* Zielony kolor dla niskiego priorytetu */
+}
+
+.medium {
+    background-color: #e67300;  /* Żółty kolor dla średniego priorytetu */
+}
+
+.high {
+    background-color: #b30000;  /* Czerwony kolor dla wysokiego priorytetu */
+}
