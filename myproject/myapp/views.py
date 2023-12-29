@@ -4,7 +4,7 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from .models import Feature
 from .models import Event
-
+from .forms import EventForm
 
 # Create your views here.
 def index(request):
@@ -79,8 +79,8 @@ def test_events(request):
             'username': request.user.username
         })
     else:
-        # Jeśli użytkownik nie jest zalogowany, możesz przekierować go na stronę logowania lub zaimplementować inne zachowanie.
         return render(request, 'register.html')
+
 
 def test_events2(request):
     if request.user.is_authenticated:
@@ -95,12 +95,33 @@ def test_events2(request):
             'username': request.user.username
         })
     else:
-        # Jeśli użytkownik nie jest zalogowany, możesz przekierować go na stronę logowania lub zaimplementować inne zachowanie.
         return render(request, 'register.html')
 
 
 def add_event(request):
-    pass
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        details = request.POST.get('details')
+        deadline = request.POST.get('deadline')
+        priority = request.POST.get('priority')
+
+        # Sprawdź, czy wszystkie pola zostały wypełnione
+        if not name or not details or not deadline or not priority:
+            messages.error(request, 'All fields are required.')
+        else:
+            # Stworzenie nowego obiektu Event i zapisanie go
+            event = Event(
+                user=request.user,  # Użytkownik zalogowany
+                name=name,
+                details=details,
+                deadline=deadline,
+                priority=priority
+            )
+            event.save()
+
+            messages.success(request, 'Event added successfully.')
+
+    return render(request, 'add_event.html')
 
 
 def account_settings():
