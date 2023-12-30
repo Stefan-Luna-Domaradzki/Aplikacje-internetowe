@@ -4,6 +4,8 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from .models import Feature
 from .models import Event
+from .forms import LoginForm
+from django.contrib.auth import authenticate, login
 
 
 # Create your views here.
@@ -66,6 +68,29 @@ def login(request):
         return render(request, 'login.html')
 
 
+def login2(request):
+    if request.method == 'POST':
+        login_form = LoginForm(request.POST)
+
+        if login_form.is_valid():
+            username = login_form.cleaned_data['username']
+            password = login_form.cleaned_data['password']
+
+            user = auth.authenticate(username=username, password=password)
+
+            if user is not None:
+                auth.login(request, user)
+                return redirect('test_events')
+            else:
+                messages.info(request, 'Credentials Invalid')
+                return redirect('login')
+    else:
+        login_form = LoginForm()
+
+    context = {'LoginForm': login_form}
+    return render(request, 'login2.html', context)
+
+
 def test_events(request):
     if request.user.is_authenticated:
         low_priority_events = Event.objects.filter(user=request.user, priority='low')
@@ -100,7 +125,31 @@ def test_events2(request):
 
 
 def add_event(request):
-    pass
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        details = request.POST.get('details')
+        deadline = request.POST.get('deadline')
+        priority = request.POST.get('priority')
+
+        # Sprawdź, czy wszystkie pola zostały wypełnione
+        if not name or not details or not deadline or not priority:
+            messages.error(request, 'All fields are required.')
+            return redirect('add_event')
+
+        # Stworzenie nowego obiektu Event i zapisanie go
+        event = Event(
+            user=request.user,  # Użytkownik zalogowany
+            name=name,
+            details=details,
+            deadline=deadline,
+            priority=priority
+        )
+        event.save()
+
+        messages.success(request, 'Event added successfully.')
+        return redirect('add_event')  # Przekierowanie na tę samą stronę po dodaniu wydarzenia
+
+    return render(request, 'add_event.html')
 
 
 def account_settings():
