@@ -1,40 +1,58 @@
 <!DOCTYPE html>
+{% load crispy_forms_tags %}
+{% load static %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Event</title>
+    <link rel="stylesheet" href="{% static 'register_styles.css' %}">
 </head>
 <body>
-    <h1>Add Event</h1>
+    <div class="container">
+        <h1 class="text-center mb-4">Add Event</h1>
 
-    {% for message in messages %}
-        <h3 class="error">{{ message }}</h3>
-    {% endfor %}
+        {% for message in messages %}
+            <h3 class="error">{{ message }}</h3>
+        {% endfor %}
 
-    <form method="post" action="{% url 'add_event' %}">
-        {% csrf_token %}
-        <p>Name:</p>
-        <input type="text" name="name" required>
+        <form method="post" action="{% url 'add_event' %}" class="custom-form">
+            {% csrf_token %}
 
-        <p>Details:</p>
-        <textarea name="details" required></textarea>
+            <div class="mb-3">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" name="name" class="form-control" required>
+            </div>
 
-        <p>Deadline:</p>
-        <input type="datetime-local" name="deadline" required>
+            <div class="mb-3">
+                <label for="details" class="form-label">Details:</label>
+                <textarea name="details" class="form-control" rows="3" readonly onmousedown="return false;" required></textarea>
+            </div>
 
-        <p>Priority:</p>
-        <select name="priority" required>
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-        </select>
+            <div class="mb-3">
+                <label for="deadline" class="form-label">Deadline:</label>
+                <input type="datetime-local" name="deadline" class="form-control" required>
+            </div>
 
-        <input type="submit" value="Add Event">
-    </form>
+            <div class="mb-3">
+                <label for="priority" class="form-label">Priority:</label>
+                <select name="priority" class="form-select" required>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
 
-    <!-- Przycisk do przekierowania na stronę test_events -->
-    <form method="get" action="{% url 'test_events' %}">
-        <input type="submit" value="Go to Test Events">
-    </form>
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary">Add Event</button>
+
+                <!-- Przycisk do przekierowania na stronę test_events -->
+                <form method="get" action="{% url 'test_events' %}">
+                    <button type="submit" class="btn btn-secondary">Go to Test Events</button>
+                </form>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
