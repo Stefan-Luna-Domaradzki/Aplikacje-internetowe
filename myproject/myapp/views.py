@@ -52,24 +52,6 @@ def register(request):
 
 def login(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-
-        user = auth.authenticate(username=username, password=password)
-
-        if user is not None:
-            auth.login(request, user)
-            return redirect('test_events')
-        else:
-            messages.info(request, 'Credentials Invalid')
-            return redirect('login')
-
-    else:
-        return render(request, 'login.html')
-
-
-def login2(request):
-    if request.method == 'POST':
         login_form = LoginForm(request.POST)
 
         if login_form.is_valid():
@@ -88,7 +70,7 @@ def login2(request):
         login_form = LoginForm()
 
     context = {'LoginForm': login_form}
-    return render(request, 'login2.html', context)
+    return render(request, 'login.html', context)
 
 
 def test_events(request):
