@@ -68,3 +68,22 @@ body {
 .high {
     background-color: #b30000;  /* Czerwony kolor dla wysokiego priorytetu */
 }
+
+.task-buttons button {
+    margin-top: 10px; /* Dodajmy odstęp od tekstu zadania */
+}
+
+.task.low .task-buttons button {
+    background-color: #007300; /* Zielony kolor dla niskiego priorytetu */
+    border-color: #007300;
+}
+
+.task.medium .task-buttons button {
+    background-color: #B35808; /* Żółty kolor dla średniego priorytetu */
+    border-color: #B35808;
+}
+
+.task.high .task-buttons button {
+    background-color: #8A0000; /* Czerwony kolor dla wysokiego priorytetu */
+    border-color: #8A0000;
+}

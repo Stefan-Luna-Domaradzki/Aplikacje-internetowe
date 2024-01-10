@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
@@ -129,10 +129,21 @@ def add_event(request):
         event.save()
 
         messages.success(request, 'Event added successfully.')
-        return redirect('add_event')  # Przekierowanie na tę samą stronę po dodaniu wydarzenia
+        return redirect('add_event') # Przekierowanie na tę samą stronę po dodaniu wydarzenia
 
     return render(request, 'add_event.html')
 
 
 def account_settings():
     return None
+
+
+def delete_event(request, event_id):
+    # Pobierz obiekt zdarzenia
+    event = get_object_or_404(Event, id=event_id)
+
+    # Usuń zdarzenie
+    event.delete()
+
+    # Przekieruj do strony test_events po usunięciu
+    return redirect('test_events')

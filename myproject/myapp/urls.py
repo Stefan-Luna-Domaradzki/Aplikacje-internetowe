@@ -13,4 +13,6 @@ urlpatterns = [
     path('add_event', views.add_event, name='add_event'),
     path('account_settings', views.account_settings, name='account_settings'),
     path('logout', views.login, name='logout'),
+    path('delete_event/<int:event_id>/', views.delete_event, name='delete_event'),
+    
 ]
