@@ -43,14 +43,17 @@
 
                                                     <!-- Przyciski -->
                                                 <div class="task-buttons">
-                                                    <button class="btn btn-primary">&#9665;</button>
 
                                                     <form method="post" action="{% url 'delete_event' event.id %}">
                                                     {% csrf_token %}
                                                     <button class="btn btn-secondary">&#10006;</button>
                                                     </form>
 
+                                                    <form method="post" action="{% url 'change_priority_higher' event.id %}">
+                                                    {% csrf_token %}
                                                     <button class="btn btn-danger">&#9655;</button>
+                                                    </form>
+
                                                 </div>
                                             </div>
                                         {% endfor %}
@@ -68,9 +71,23 @@
 
                                                  <!-- Przyciski -->
                                                 <div class="task-buttons">
+
+                                                    <form method="post" action="{% url 'change_priority_lower' event.id %}">
+                                                    {% csrf_token %}
                                                     <button class="btn btn-primary">&#9665;</button>
+                                                    </form>
+
+
+                                                    <form method="post" action="{% url 'delete_event' event.id %}">
+                                                    {% csrf_token %}
                                                     <button class="btn btn-secondary">&#10006;</button>
+                                                    </form>
+
+                                                    <form method="post" action="{% url 'change_priority_higher' event.id %}">
+                                                    {% csrf_token %}
                                                     <button class="btn btn-danger">&#9655;</button>
+                                                    </form>
+
                                                 </div>
 
                                             </div>
@@ -89,9 +106,18 @@
 
                                                 <!-- Przyciski -->
                                                 <div class="task-buttons">
+
+                                                    <form method="post" action="{% url 'change_priority_lower' event.id %}">
+                                                    {% csrf_token %}
                                                     <button class="btn btn-primary">&#9665;</button>
+                                                    </form>
+
+
+                                                    <form method="post" action="{% url 'delete_event' event.id %}">
+                                                    {% csrf_token %}
                                                     <button class="btn btn-secondary">&#10006;</button>
-                                                </div>
+                                                    </form>
+                                                    </div>
 
                                             </div>
                                         {% endfor %}

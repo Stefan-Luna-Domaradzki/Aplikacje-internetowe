@@ -14,5 +14,6 @@ urlpatterns = [
     path('account_settings', views.account_settings, name='account_settings'),
     path('logout', views.login, name='logout'),
     path('delete_event/<int:event_id>/', views.delete_event, name='delete_event'),
-    
+    path('change_priority_higher/<int:event_id>/', views.change_priority_higher, name='change_priority_higher'),
+    path('change_priority_lower/<int:event_id>/', views.change_priority_lower, name='change_priority_lower'),
 ]

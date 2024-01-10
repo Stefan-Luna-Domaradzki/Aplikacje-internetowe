@@ -1,4 +1,4 @@
-/* static/styles.css */
+/* Dodaj nowe style do pliku styles.css */
 
 body {
     margin: 0;
@@ -67,6 +67,15 @@ body {
 
 .high {
     background-color: #b30000;  /* Czerwony kolor dla wysokiego priorytetu */
+}
+
+.task-buttons {
+    display: flex;
+    gap: 5px; /* Odstęp między przyciskami */
+}
+
+.task-buttons form {
+    margin: 0; /* Usuń domyślne marginesy formularzy */
 }
 
 .task-buttons button {

@@ -147,3 +147,41 @@ def delete_event(request, event_id):
 
     # Przekieruj do strony test_events po usunięciu
     return redirect('test_events')
+
+
+def change_priority_higher(request, event_id):
+
+    # Pobierz obiekt zdarzenia
+    event = get_object_or_404(Event, id=event_id)
+
+    # Zmień priorytet
+    if event.priority == 'low':
+        event.priority = 'medium'
+    elif event.priority == 'medium':
+        event.priority = 'high'
+
+
+    # Zapisz zmiany
+    event.save()
+
+    # Przekieruj do strony test_events po zmianie priorytetu
+    return redirect('test_events')
+
+
+def change_priority_lower(request, event_id):
+
+    # Pobierz obiekt zdarzenia
+    event = get_object_or_404(Event, id=event_id)
+
+    # Zmień priorytet
+    if event.priority == 'medium':
+        event.priority = 'low'
+    elif event.priority == 'high':
+        event.priority = 'medium'
+
+
+    # Zapisz zmiany
+    event.save()
+
+    # Przekieruj do strony test_events po zmianie priorytetu
+    return redirect('test_events')
